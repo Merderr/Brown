@@ -7,7 +7,13 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
-@PluginDescriptor(name = "Never Logout", enabledByDefault = false, description = "Overrides the 5 minute AFK logout timer.", tags = {"never log", "idle", "logout", "log", "never"})
+@PluginDescriptor(
+        name = "Never Logout",
+        enabledByDefault = false,
+        description = "Overrides the 5 minute AFK logout timer.",
+        tags = {"never log", "idle", "logout", "log", "never"}
+)
+
 public class NeverLogoutPlugin extends Plugin {
     @Inject
     private Client client;
