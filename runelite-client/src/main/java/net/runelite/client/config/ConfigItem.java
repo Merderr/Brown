@@ -41,6 +41,8 @@ public @interface ConfigItem
 
 	String description();
 
+	String unhide() default "";
+
 	boolean hidden() default false;
 
 	String warning() default "";
@@ -48,4 +50,5 @@ public @interface ConfigItem
 	boolean secret() default false;
 
 	String section() default "";
+
 }
