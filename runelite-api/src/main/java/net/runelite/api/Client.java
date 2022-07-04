@@ -71,6 +71,11 @@ public interface Client extends OAuthApi, GameEngine
 
 	String getBuildID();
 
+	void setMenuOptionCount(int count);
+	int getMenuOptionCount();
+	void setKeyboardIdleTicks(int cycles);
+	void setMouseIdleTicks(int cycles);
+
 	/**
 	 * Gets a list of all valid players from the player cache.
 	 *
