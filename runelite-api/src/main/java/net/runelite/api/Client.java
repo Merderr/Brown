@@ -1354,6 +1354,17 @@ public interface Client extends OAuthApi, GameEngine
 	 */
 	int getStringStackSize();
 
+	String getSelectedSpellName();
+	void setSelectedSpellName(String name);
+	void setSelectedSpellWidget(int widgetID);
+
+	void setSelectedSpellChildIndex(int index);
+
+	/**
+	 * Adds a MenuEntry to the current menu.
+	 */
+	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
+
 	/**
 	 * Sets the length of the cs2 vm's string stack
 	 */
