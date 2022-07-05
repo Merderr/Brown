@@ -71,6 +71,10 @@ public interface Client extends OAuthApi, GameEngine
 
 	String getBuildID();
 
+	/**
+	 * Set the amount of menu entries the client has.
+	 * If you decrement this count, it's the same as removing the last one
+	 */
 	void setMenuOptionCount(int count);
 	int getMenuOptionCount();
 	void setKeyboardIdleTicks(int cycles);
