@@ -1,4 +1,4 @@
-/*package net.runelite.client.plugins.ariatob;
+package net.runelite.client.plugins.ariatob;
 
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,8 @@ public class AriaTobPlugin extends Plugin
             10791, // Hard Mode
             10792, 10793, 10794, 10795, 10796, 10797, 10798, 10799, 10800, 10801, 10802, 10803,
             10804, // Demi
-            10805, 10806);
+            10805, 10806
+    );
 
     private final HashMap<Integer, NPC> nyloNpcs = new HashMap<>();
     private final HashMap<NPC, Integer> nyloTickSpawned = new HashMap<>();
@@ -133,7 +134,7 @@ public class AriaTobPlugin extends Plugin
 			var target = x.getTarget();
 			var ticks = nyloTickSpawned.get(client.getCachedNPCs()[x.getId()]);
 			x.setTarget(target + " - " + (client.getTickCount() - ticks));
-		});
+		});*/
         final var finalEntries = Stream.of(leftovers, sortedNylos).flatMap(List::stream).collect(Collectors.toUnmodifiableList());
         client.setMenuEntries(finalEntries.toArray(MenuEntry[]::new));
 
@@ -147,4 +148,4 @@ public class AriaTobPlugin extends Plugin
         // If spectating, above code will return a different id.
         return WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID() == NYLO_MAP_REGION;
     }
-}*/
+}

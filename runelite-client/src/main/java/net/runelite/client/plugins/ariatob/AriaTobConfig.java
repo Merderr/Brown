@@ -1,4 +1,4 @@
-/*package net.runelite.client.plugins.ariatob;
+package net.runelite.client.plugins.ariatob;
 
 import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
@@ -49,4 +49,4 @@ public interface AriaTobConfig extends Config
     {
         return false;
     }
-}*/
+}
