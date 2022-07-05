@@ -78,9 +78,9 @@ import net.runelite.client.util.RSTimeUnit;
 import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
-	name = "Timers",
-	description = "Show various timers in an infobox",
-	tags = {"combat", "items", "magic", "potions", "prayer", "overlay", "abyssal", "sire", "inferno", "fight", "caves", "cape", "timer", "tzhaar", "thieving", "pickpocket"}
+		name = "Timers",
+		description = "Show various timers in an infobox",
+		tags = {"combat", "items", "magic", "potions", "prayer", "overlay", "abyssal", "sire", "inferno", "fight", "caves", "cape", "timer", "tzhaar", "thieving", "pickpocket"}
 )
 @Slf4j
 public class TimersPlugin extends Plugin
@@ -490,8 +490,8 @@ public class TimersPlugin extends Plugin
 		{
 
 			if ((event.getItemId() == ItemID.ANTIFIRE_MIX1
-				|| event.getItemId() == ItemID.ANTIFIRE_MIX2)
-				&& config.showAntiFire())
+					|| event.getItemId() == ItemID.ANTIFIRE_MIX2)
+					&& config.showAntiFire())
 			{
 				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 				createGameTimer(ANTIFIRE);
@@ -499,8 +499,8 @@ public class TimersPlugin extends Plugin
 			}
 
 			if ((event.getItemId() == ItemID.EXTENDED_ANTIFIRE_MIX1
-				|| event.getItemId() == ItemID.EXTENDED_ANTIFIRE_MIX2)
-				&& config.showAntiFire())
+					|| event.getItemId() == ItemID.EXTENDED_ANTIFIRE_MIX2)
+					&& config.showAntiFire())
 			{
 				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 				createGameTimer(EXANTIFIRE);
@@ -508,8 +508,8 @@ public class TimersPlugin extends Plugin
 			}
 
 			if ((event.getItemId() == ItemID.SUPER_ANTIFIRE_MIX1
-				|| event.getItemId() == ItemID.SUPER_ANTIFIRE_MIX2)
-				&& config.showAntiFire())
+					|| event.getItemId() == ItemID.SUPER_ANTIFIRE_MIX2)
+					&& config.showAntiFire())
 			{
 				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 				createGameTimer(SUPERANTIFIRE);
@@ -517,8 +517,8 @@ public class TimersPlugin extends Plugin
 			}
 
 			if ((event.getItemId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX1
-				|| event.getItemId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2)
-				&& config.showAntiFire())
+					|| event.getItemId() == ItemID.EXTENDED_SUPER_ANTIFIRE_MIX2)
+					&& config.showAntiFire())
 			{
 				// Needs menu option hook because mixes use a common drink message, distinct from their standard potion messages
 				createGameTimer(EXSUPERANTIFIRE);
@@ -601,8 +601,8 @@ public class TimersPlugin extends Plugin
 		if (config.showCannon())
 		{
 			if (message.equals(CANNON_BASE_MESSAGE) || message.equals(CANNON_STAND_MESSAGE)
-				|| message.equals(CANNON_BARRELS_MESSAGE) || message.equals(CANNON_FURNACE_MESSAGE)
-				|| message.contains(CANNON_REPAIR_MESSAGE))
+					|| message.equals(CANNON_BARRELS_MESSAGE) || message.equals(CANNON_FURNACE_MESSAGE)
+					|| message.contains(CANNON_REPAIR_MESSAGE))
 			{
 				removeGameTimer(CANNON_REPAIR);
 				TimerTimer cannonTimer = createGameTimer(CANNON);
@@ -927,7 +927,7 @@ public class TimersPlugin extends Plugin
 		{
 			// assume movement means unfrozen
 			if (freezeTime != client.getTickCount()
-				&& !currentWorldPoint.equals(lastPoint))
+					&& !currentWorldPoint.equals(lastPoint))
 			{
 				removeGameTimer(freezeTimer.getTimer());
 				freezeTimer = null;
@@ -1070,10 +1070,10 @@ public class TimersPlugin extends Plugin
 
 		Item weapon = container.getItem(EquipmentInventorySlot.WEAPON.getSlotIdx());
 		if (weapon == null ||
-			(weapon.getId() != ItemID.STAFF_OF_THE_DEAD &&
-				weapon.getId() != ItemID.TOXIC_STAFF_OF_THE_DEAD &&
-				weapon.getId() != ItemID.STAFF_OF_LIGHT &&
-				weapon.getId() != ItemID.TOXIC_STAFF_UNCHARGED))
+				(weapon.getId() != ItemID.STAFF_OF_THE_DEAD &&
+						weapon.getId() != ItemID.TOXIC_STAFF_OF_THE_DEAD &&
+						weapon.getId() != ItemID.STAFF_OF_LIGHT &&
+						weapon.getId() != ItemID.TOXIC_STAFF_UNCHARGED))
 		{
 			// remove sotd timer if the staff has been unwielded
 			removeGameTimer(STAFF_OF_THE_DEAD);
