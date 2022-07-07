@@ -1,6 +1,5 @@
 package net.runelite.client.plugins.ticktimers;
 
-
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.awt.Color;
@@ -193,4 +192,3 @@ class NPCContainer {
         }
     }
 }
-

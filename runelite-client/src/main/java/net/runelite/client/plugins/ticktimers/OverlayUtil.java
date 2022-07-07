@@ -1,14 +1,8 @@
 package net.runelite.client.plugins.ticktimers;
 
 import com.google.common.base.Strings;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.Stroke;
+
+import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 import net.runelite.api.Client;
@@ -19,10 +13,31 @@ import net.runelite.api.VarClientInt;
 import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
+import net.runelite.api.events.NpcSpawned;
 import net.runelite.api.vars.InterfaceTab;
 import net.runelite.api.widgets.Widget;
+import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.client.plugins.spoonnightmare.SpoonNightmareConfig;
+import net.runelite.client.plugins.spoonnightmare.SpoonNightmarePlugin;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
+import net.runelite.client.ui.overlay.OverlayPosition;
+import net.runelite.client.ui.overlay.OverlayPriority;
 
-public class OverlayUtil {
+import javax.inject.Inject;
+
+public class OverlayUtil extends Overlay {
+
+    private final Client client;
+
+    private final TickTimersPlugin plugin;
+
+    @Inject
+    private OverlayUtil(Client client, TickTimersPlugin plugin) {
+        this.client = client;
+        this.plugin = plugin;
+    }
+
     public static List<WorldPoint> getHitSquares(WorldPoint npcLoc, int npcSize, int thickness, boolean includeUnder) {
         List<WorldPoint> little = (new WorldArea(npcLoc, npcSize, npcSize)).toWorldPointList();
         List<WorldPoint> big = (new WorldArea(npcLoc.getX() - thickness, npcLoc.getY() - thickness, npcSize + thickness * 2, npcSize + thickness * 2, npcLoc.getPlane())).toWorldPointList();
@@ -76,12 +91,13 @@ public class OverlayUtil {
     }
 
     public static Rectangle renderPrayerOverlay(Graphics2D graphics, Client client, Prayer prayer, Color color) {
-        Widget widget = client.getWidget(prayer.getWidgetInfo());
-        if (widget == null || client.getVar(VarClientInt.INVENTORY_TAB) != InterfaceTab.PRAYER.getId())
-            return null;
-        Rectangle bounds = widget.getBounds();
-        renderPolygon(graphics, rectangleToPolygon(bounds), color);
-        return bounds;
+        Widget prayerVisible = client.getWidget(prayer.getWidgetInfo());
+        if (prayerVisible != null && !prayerVisible.isHidden() && !prayerVisible.isSelfHidden()) {
+            Rectangle bounds = prayerVisible.getBounds();
+            renderPolygon(graphics, rectangleToPolygon(bounds), color);
+            return bounds;
+        }
+        return null;
     }
 
     public static void renderPolygon(Graphics2D graphics, Shape poly, Color color) {
@@ -95,8 +111,8 @@ public class OverlayUtil {
     }
 
     private static Polygon rectangleToPolygon(Rectangle rect) {
-        int[] xpoints = { rect.x, rect.x + rect.width, rect.x + rect.width, rect.x };
-        int[] ypoints = { rect.y, rect.y, rect.y + rect.height, rect.y + rect.height };
+        int[] xpoints = {rect.x, rect.x + rect.width, rect.x + rect.width, rect.x};
+        int[] ypoints = {rect.y, rect.y, rect.y + rect.height, rect.y + rect.height};
         return new Polygon(xpoints, ypoints, 4);
     }
 
@@ -108,5 +124,9 @@ public class OverlayUtil {
         graphics.fill(poly);
         graphics.setStroke(originalStroke);
     }
-}
 
+    @Override
+    public Dimension render(Graphics2D graphics) {
+        return null;
+    }
+}
