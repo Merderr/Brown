@@ -39,4 +39,7 @@ public final class VarClientStr
 	public static final int RECENT_FRIENDS_CHAT = 362;
 	public static final int NOTIFICATION_TOP_TEXT = 387;
 	public static final int NOTIFICATION_BOTTOM_TEXT = 388;
+
+	public VarClientStr(int index) {
+	}
 }
