@@ -93,6 +93,8 @@ public class TickTimersPlugin extends Plugin {
 
     private boolean validRegion;
 
+    public String correctPray = "";
+
     private long lastTickTime;
 
     Set<NPCContainer> getNpcContainers() {
