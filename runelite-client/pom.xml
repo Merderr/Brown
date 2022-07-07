@@ -369,7 +369,7 @@
 							<outputDirectory>${project.build.outputDirectory}/META-INF/versions/11</outputDirectory>
 						</configuration>
 					</execution>
-				</executions><configuration><source>8</source><target>8</target></configuration>
+				</executions><configuration><source>11</source><target>11</target></configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

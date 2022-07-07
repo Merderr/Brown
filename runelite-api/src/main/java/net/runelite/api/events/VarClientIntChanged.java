@@ -34,6 +34,5 @@ import net.runelite.api.annotations.VarCInt;
 @Value
 public class VarClientIntChanged
 {
-	@VarCInt
-	int index;
+	private int index;
 }

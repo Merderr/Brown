@@ -836,6 +836,7 @@ public interface Client extends OAuthApi, GameEngine
 	 */
 	int getVarbitValue(@Varbit int varbit);
 
+
 	/**
 	 * Gets the value of the given varbit.
 	 * This returns the server's idea of the value, not the client's. This is
@@ -898,6 +899,16 @@ public interface Client extends OAuthApi, GameEngine
 	 * @param value the new value
 	 */
 	void setVarcIntValue(@VarCInt int var, int value);
+
+	/**
+	 * Sets a VarClientString to the passed value
+	 */
+	void setVar(VarClientStr varClientStr, String value);
+
+	/**
+	 * Sets a VarClientInt to the passed value
+	 */
+	void setVar(VarClientInt varClientStr, int value);
 
 	/**
 	 * Sets the value of a varbit
@@ -2035,4 +2046,5 @@ public interface Client extends OAuthApi, GameEngine
 	 * @return
 	 */
 	Deque<AmbientSoundEffect> getAmbientSoundEffects();
+
 }

@@ -63,4 +63,10 @@ public final class VarClientInt
 	public static final int BLOCK_KEYPRESS = 187;
 
 	public static final int WORLD_MAP_SEARCH_FOCUSED = 190;
+
+	private final int index;
+
+	public VarClientInt(int index) {
+		this.index = index;
+	}
 }

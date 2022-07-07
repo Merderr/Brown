@@ -34,6 +34,5 @@ import net.runelite.api.annotations.VarCStr;
 @Value
 public class VarClientStrChanged
 {
-	@VarCStr
-	int index;
+	private int index;
 }
