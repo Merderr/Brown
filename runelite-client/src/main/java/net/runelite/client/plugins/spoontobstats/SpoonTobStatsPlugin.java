@@ -95,19 +95,19 @@ public class SpoonTobStatsPlugin extends Plugin {
 
     private static final int VERZIK_ID = 22473;
 
-    private static final Pattern MAIDEN_WAVE = Pattern.compile("Wave 'The Maiden of Sugadinti' \\(.*\\) complete!");
+    private static final Pattern MAIDEN_WAVE = Pattern.compile("Wave 'The Maiden of Sugadinti idk19' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
     private static final Pattern BLOAT_WAVE = Pattern.compile("Wave 'The Pestilent Bloat' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern NYLOCAS_WAVE = Pattern.compile("Wave 'The Nylocas' \\(.*\\) complete!");
+    private static final Pattern NYLOCAS_WAVE = Pattern.compile("Wave 'The Nylocas' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern SOTETSEG_WAVE = Pattern.compile("Wave 'Sotetseg' \\(.*\\) complete!");
+    private static final Pattern SOTETSEG_WAVE = Pattern.compile("Wave 'Sotetseg' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern XARPUS_WAVE = Pattern.compile("Wave 'Xarpus' \\(.*\\) complete!");
+    private static final Pattern XARPUS_WAVE = Pattern.compile("Wave 'Xarpus' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern VERZIK_WAVE = Pattern.compile("Wave 'The Final Challenge' \\(.*\\) complete!");
+    private static final Pattern VERZIK_WAVE = Pattern.compile("Wave 'The Final Challenge' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern COMPLETION = Pattern.compile("Theatre of Blood total completion time:");
+    private static final Pattern COMPLETION = Pattern.compile("Theatre of Blood total completion time:Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
     private static final Set<Integer> NYLOCAS_IDS = (Set<Integer>)ImmutableSet.of(
             Integer.valueOf(8344), Integer.valueOf(8347), Integer.valueOf(8350), Integer.valueOf(8353),
@@ -418,8 +418,8 @@ public class SpoonTobStatsPlugin extends Plugin {
                     splits = "70% - " + formatTime(this.maiden70time) + "</br>50% - " + formatTime(this.maiden50time) + " (" + formatTime(this.maiden50time - this.maiden70time) + ")</br>30% - " + formatTime(this.maiden30time) + " (" + formatTime(this.maiden30time - this.maiden50time) + ")</br>Room Complete - " + roomTime + " (" + formatTime(roomTicks - this.maiden30time) + ")";
                     if (this.config.msgTiming() == SpoonTobStatsConfig.msgTimeMode.ROOM_END)
                         if (this.config.simpleMessage()) {
-                            this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "70% - <col=ff0000>" + formatTime(this.maiden70time) + "</col>", null);
-                            this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "50% - <col=ff0000>" + formatTime(this.maiden50time) + "</col> (<col=ff0000>" +
+                            this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "70%  - <col=ff0000>" + formatTime(this.maiden70time) + "</col>", null);
+                            this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "50%  - <col=ff0000>" + formatTime(this.maiden50time) + "</col> (<col=ff0000>" +
                                     formatTime(this.maiden50time - this.maiden70time) + "</col>)", null);
                             this.client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "30% - <col=ff0000>" + formatTime(this.maiden30time) + "</col> (<col=ff0000>" +
                                     formatTime(this.maiden30time - this.maiden50time) + "</col>)", null);
