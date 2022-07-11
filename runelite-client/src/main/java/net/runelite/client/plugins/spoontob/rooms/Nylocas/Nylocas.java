@@ -9,6 +9,7 @@ import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.*;
 import net.runelite.api.kit.KitType;
+import net.runelite.client.plugins.hotkeyablemenuswaps.HotkeyableMenuSwapsPlugin;
 import net.runelite.client.util.Text;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -23,6 +24,7 @@ import net.runelite.client.plugins.spoontob.util.WeaponMap;
 import net.runelite.client.plugins.spoontob.util.WeaponStyle;
 import net.runelite.client.ui.overlay.components.InfoBoxComponent;
 import net.runelite.client.util.ColorUtil;
+import net.runelite.client.util.WildcardMatcher;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,7 @@ import java.awt.*;
 import java.time.Instant;
 import java.util.List;
 import java.util.*;
+import java.util.function.Supplier;
 
 import static net.runelite.api.NpcID.*;
 
@@ -328,30 +331,30 @@ public class Nylocas extends Room {
     public void onConfigChanged(ConfigChanged change) {
         if (change.getKey().equals("nyloOverlay")) {
             nyloSelectionManager.setHidden(!config.nyloOverlay());
-        }else if (change.getKey().equals("nyloAliveCounter")) {
+        } else if (change.getKey().equals("nyloAliveCounter")) {
             nylocasAliveCounterOverlay.setHidden(!config.nyloAlivePanel());
-        }else if (change.getKey().equals("showLowestPillar") && !config.showLowestPillar()) {
+        } else if (change.getKey().equals("showLowestPillar") && !config.showLowestPillar()) {
             client.clearHintArrow();
-        }else if(change.getKey().equals("hidePillars")){
+        } else if (change.getKey().equals("hidePillars")) {
             plugin.refreshScene();
-            if(config.hidePillars() == SpoonTobConfig.hidePillarsMode.PILLARS){
+            if (config.hidePillars() == SpoonTobConfig.hidePillarsMode.PILLARS) {
                 removeGameObjectsFromScene(ImmutableSet.of(32862), 0);
-            }else if(config.hidePillars() == SpoonTobConfig.hidePillarsMode.CLEAN){
+            } else if (config.hidePillars() == SpoonTobConfig.hidePillarsMode.CLEAN) {
                 removeGameObjectsFromScene(ImmutableSet.of(32862, 32876, 32899), 0);
             }
 
-            if(config.hideEggs()) {
+            if (config.hideEggs()) {
                 removeGameObjectsFromScene(ImmutableSet.of(32939, 32937, 2739, 32865), 0);
             }
-        }else if(change.getKey().equals("hideEggs")){
+        } else if (change.getKey().equals("hideEggs")) {
             plugin.refreshScene();
-            if(config.hideEggs()) {
+            if (config.hideEggs()) {
                 removeGameObjectsFromScene(ImmutableSet.of(32939, 32937, 2739, 32865), 0);
             }
 
-            if(config.hidePillars() == SpoonTobConfig.hidePillarsMode.PILLARS){
+            if (config.hidePillars() == SpoonTobConfig.hidePillarsMode.PILLARS) {
                 removeGameObjectsFromScene(ImmutableSet.of(32862), 0);
-            }else if(config.hidePillars() == SpoonTobConfig.hidePillarsMode.CLEAN){
+            } else if (config.hidePillars() == SpoonTobConfig.hidePillarsMode.CLEAN) {
                 removeGameObjectsFromScene(ImmutableSet.of(32862, 32876, 32899), 0);
             }
         }
@@ -361,7 +364,7 @@ public class Nylocas extends Room {
     public void onNpcSpawned(NpcSpawned npcSpawned) {
         NPC npc = npcSpawned.getNpc();
         int id = npc.getId();
-        switch(npc.getId()) {
+        switch (npc.getId()) {
             case NYLOCAS_ISCHYROS_8342:
             case NYLOCAS_TOXOBOLOS_8343:
             case NYLOCAS_HAGIOS:
@@ -403,7 +406,7 @@ public class Nylocas extends Room {
             case NYLOCAS_PRINKIPAS_10805:
             case NYLOCAS_PRINKIPAS_10806:
                 if (nyloActive) {
-                    if (npc.getId() == NYLOCAS_PRINKIPAS_10804){
+                    if (npc.getId() == NYLOCAS_PRINKIPAS_10804) {
                         minibossAlive = true;
                         nyloMiniboss = npc;
                         bossChangeTicks = 10;
@@ -469,9 +472,9 @@ public class Nylocas extends Room {
                     nylocasPillars.put(npc, 100);
                 }
 
-                if (npc.getId() == NPCID_NYLOCAS_HM_PILLAR){
+                if (npc.getId() == NPCID_NYLOCAS_HM_PILLAR) {
                     tobMode = "hard";
-                } else if (npc.getId() == NPCID_NYLOCAS_SM_PILLAR){
+                } else if (npc.getId() == NPCID_NYLOCAS_SM_PILLAR) {
                     tobMode = "story";
                 } else {
                     tobMode = "normal";
@@ -535,7 +538,7 @@ public class Nylocas extends Room {
     }
 
     @Subscribe
-    public void onNpcChanged(NpcChanged event){
+    public void onNpcChanged(NpcChanged event) {
         NPC npc = event.getNpc();
         int id = npc.getId();
         if (NYLO_BOSS_IDS.contains(id) || NYLO_DEMI_BOSS_IDS.contains(id)) {
@@ -591,7 +594,7 @@ public class Nylocas extends Room {
             if (matched) {
                 setNyloWave(wave);
                 stalledWave = false;
-                if(ticksSinceLastWave > 0) {
+                if (ticksSinceLastWave > 0) {
                     waveSpawnTicks = ticksSinceLastWave;
                 } else {
                     waveSpawnTicks = 4;
@@ -632,7 +635,7 @@ public class Nylocas extends Room {
     public void onNpcDespawned(NpcDespawned npcDespawned) {
         NPC npc = npcDespawned.getNpc();
         int id = npc.getId();
-        switch(id) {
+        switch (id) {
             case NYLOCAS_ISCHYROS_8342:
             case NYLOCAS_TOXOBOLOS_8343:
             case NYLOCAS_HAGIOS:
@@ -806,12 +809,10 @@ public class Nylocas extends Room {
             rangeNyloRaveColors.clear();
             mageNyloRaveColors.clear();
 
-            for (int i = nylocasNpcs.size() - 1; i >= 0; i--)
-            {
+            for (int i = nylocasNpcs.size() - 1; i >= 0; i--) {
                 NyloInfo ni = nylocasNpcs.get(i);
                 ni.ticks--;
-                if (ni.ticks < 0 || ni.nylo.isDead() || !ni.alive)
-                {
+                if (ni.ticks < 0 || ni.nylo.isDead() || !ni.alive) {
                     nylocasNpcs.remove(ni);
                     continue;
                 }
@@ -825,11 +826,9 @@ public class Nylocas extends Room {
                 }
             }
 
-            for (NPC pillar : nylocasPillars.keySet())
-            {
+            for (NPC pillar : nylocasPillars.keySet()) {
                 int healthPercent = pillar.getHealthRatio();
-                if (healthPercent > -1)
-                {
+                if (healthPercent > -1) {
                     nylocasPillars.replace(pillar, healthPercent);
                 }
             }
@@ -878,12 +877,11 @@ public class Nylocas extends Room {
                         bossChangeTicks = 10;
                     }
                 }
-            } else if (minibossAlive && nyloMiniboss != null){
+            } else if (minibossAlive && nyloMiniboss != null) {
                 bossChangeTicks--;
             }
 
-            if (!splitsMap.isEmpty())
-            {
+            if (!splitsMap.isEmpty()) {
                 splitsMap.values().removeIf((value) -> value <= 1);
                 splitsMap.replaceAll((key, value) -> value - 1);
             }
@@ -895,21 +893,17 @@ public class Nylocas extends Room {
     @Subscribe
     protected void onClientTick(ClientTick event) {
         List<Player> players = client.getPlayers();
-        for (Player player : players)
-        {
-            if (player.getWorldLocation() != null)
-            {
+        for (Player player : players) {
+            if (player.getWorldLocation() != null) {
                 LocalPoint lp = player.getLocalLocation();
 
                 WorldPoint wp = WorldPoint.fromRegion(player.getWorldLocation().getRegionID(), 5, 33, 0);
                 LocalPoint lp1 = LocalPoint.fromWorld(client, wp.getX(), wp.getY());
-                if (lp1 != null)
-                {
+                if (lp1 != null) {
                     Point base = new Point(lp1.getSceneX(), lp1.getSceneY());
                     Point point = new Point(lp.getSceneX() - base.getX(), lp.getSceneY() - base.getY());
 
-                    if (isInBloatRegion() && point.getX() == -1 && (point.getY() == -1 || point.getY() == -2 || point.getY() == -3) && nextInstance)
-                    {
+                    if (isInBloatRegion() && point.getX() == -1 && (point.getY() == -1 || point.getY() == -2 || point.getY() == -3) && nextInstance) {
                         client.addChatMessage(ChatMessageType.FRIENDSCHATNOTIFICATION, "", "Nylo instance timer started.", "");
                         instanceTimer = 3;
                         isInstanceTimerRunning = true;
@@ -939,20 +933,21 @@ public class Nylocas extends Room {
     }
 
     @Subscribe
-    public void onChatMessage(ChatMessage event){
+    public void onChatMessage(ChatMessage event) {
         String mes = event.getMessage();
-        if (mes.contains("Wave 'The Nylocas'") && mes.contains("complete!<br>Duration: <col=ff0000>")){
+        if (mes.contains("Wave 'The Nylocas'") && mes.contains("complete!<br>Duration: <col=ff0000>")) {
             if ((config.nyloSplitsMsg() == SpoonTobConfig.nyloSplitsMessage.WAVES || config.nyloSplitsMsg() == SpoonTobConfig.nyloSplitsMessage.BOTH)
-                    && config.splitMsgTiming() == SpoonTobConfig.splitsMsgTiming.FINISHED){
-                if (config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.CAP || config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.BOTH){
+                    && config.splitMsgTiming() == SpoonTobConfig.splitsMsgTiming.FINISHED) {
+                if (config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.CAP || config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.BOTH) {
                     client.addChatMessage(ChatMessageType.FRIENDSCHATNOTIFICATION, "", "Pre-cap splits: <col=00FFFF>" + preMageSplits + "</col> - <col=00FF00>"
                             + preRangeSplits + "</col> - <col=ff0000>" + preMeleeSplits + "</col> Post-cap splits: <col=00FFFF>" + postMageSplits + "</col> - <col=00FF00>"
                             + postRangeSplits + "</col> - <col=ff0000>" + postMeleeSplits, null);
-                } if (config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.TOTAL || config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.BOTH)
+                }
+                if (config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.TOTAL || config.smallSplitsType() == SpoonTobConfig.smallSplitsMode.BOTH)
                     client.addChatMessage(ChatMessageType.FRIENDSCHATNOTIFICATION, "", "Small splits: <col=00FFFF>" + mageSplits + "</col> - <col=00FF00>"
                             + rangeSplits + "</col> - <col=ff0000>" + meleeSplits + "</col> ", null);
             }
-            if (config.nyloSplitsMsg() == SpoonTobConfig.nyloSplitsMessage.BOSS || config.nyloSplitsMsg() == SpoonTobConfig.nyloSplitsMessage.BOTH){
+            if (config.nyloSplitsMsg() == SpoonTobConfig.nyloSplitsMessage.BOSS || config.nyloSplitsMsg() == SpoonTobConfig.nyloSplitsMessage.BOTH) {
                 client.addChatMessage(ChatMessageType.FRIENDSCHATNOTIFICATION, "", "Boss phases: <col=00FFFF>" + mageBoss + "</col> - <col=00FF00>"
                         + rangeBoss + "</col> - <col=ff0000>" + meleeBoss + "</col> ", null);
             }
@@ -995,6 +990,7 @@ public class Nylocas extends Room {
 
     @Subscribe
     public void onMenuEntryAdded(MenuEntryAdded entry) {
+        final MenuEntry menuEntry = entry.getMenuEntry();
         if (nyloActive) {
             String target = entry.getTarget();
             String option = entry.getOption();
@@ -1047,56 +1043,76 @@ public class Nylocas extends Room {
             }
 
             if ((config.wheelchairNylo() == SpoonTobConfig.wheelchairMode.WAVES || config.wheelchairNylo() == SpoonTobConfig.wheelchairMode.BOTH)
-                    && option.equalsIgnoreCase("attack") && weaponStyle != null) {
+                    && option.equalsIgnoreCase("Attack") && weaponStyle != null) {
                 switch (weaponStyle) {
                     case TRIDENTS:
-                        if (target.contains(MELEE_NYLO) || target.contains(RANGE_NYLO)) {
-                        }
-                        break;
                     case MAGIC:
-                        if (config.manualCast()) {
-                            if (target.contains(MELEE_NYLO) || target.contains(RANGE_NYLO) || target.contains(MAGE_NYLO)) {
+                        if (target.contains(MELEE_NYLO) || target.contains(RANGE_NYLO)) {
+                            if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                                return;
                             }
-                        } else {
-                            if (target.contains(MELEE_NYLO) || target.contains(RANGE_NYLO)) {
-                            }
+                            menuEntry.setDeprioritized(true);
                         }
                         break;
                     case MELEE:
                         if (target.contains(RANGE_NYLO) || target.contains(MAGE_NYLO)) {
+                            if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                                return;
+                            }
+                            menuEntry.setDeprioritized(true);
                         }
                         break;
                     case RANGE:
                         if (target.contains(MELEE_NYLO) || target.contains(MAGE_NYLO)) {
+                            if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                                return;
+                            }
+                            menuEntry.setDeprioritized(true);
                         }
                         break;
                     case CHINS:
                         if (!config.ignoreChins() && (target.contains(MELEE_NYLO) || target.contains(MAGE_NYLO))) {
+                            if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                                return;
+                            }
+                            menuEntry.setDeprioritized(true);
                         }
                         break;
                 }
             }
-
-            if ((config.wheelchairNylo() == SpoonTobConfig.wheelchairMode.BOSS || config.wheelchairNylo() == SpoonTobConfig.wheelchairMode.BOTH)
-                    && nyloMiniboss != null && target.contains(DEMIBOSS_NYLO) && option.equalsIgnoreCase("attack") && weaponStyle != null) {
-                switch (weaponStyle) {
-                    case TRIDENTS:
-                    case MAGIC:
-                        if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10805) {
+        if ((config.wheelchairNylo() == SpoonTobConfig.wheelchairMode.BOSS || config.wheelchairNylo() == SpoonTobConfig.wheelchairMode.BOTH)
+                && nyloMiniboss != null && target.contains(DEMIBOSS_NYLO) && option.equalsIgnoreCase("attack") && weaponStyle != null) {
+            switch (weaponStyle) {
+                case TRIDENTS:
+                case MAGIC:
+                    if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10805) {
+                        if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                            return;
                         }
-                        break;
-                    case MELEE:
-                        if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10804) {
+                        menuEntry.setDeprioritized(true);
+                    }
+                    break;
+                case MELEE:
+                    if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10804) {
+                        if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                            return;
                         }
-                        break;
-                    case RANGE:
-                        if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10806) {
+                        menuEntry.setDeprioritized(true);
+                    }
+                    break;
+                case RANGE:
+                    if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10806) {
+                        if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                            return;
                         }
-                        break;
-                }
+                        menuEntry.setDeprioritized(true);
+                    }
+                    break;
             }
         }
     }
+
+}
 
     static String stripColor(String str) {
         return str.replaceAll("(<col=[0-9a-f]+>|</col>)", "");
@@ -1131,4 +1147,6 @@ public class Nylocas extends Room {
     private boolean isInBloatRegion() {
         return client.isInInstancedRegion() && client.getMapRegions().length > 0 && client.getMapRegions()[0] == BLOAT_MAP_REGION;
     }
+
+
 }
