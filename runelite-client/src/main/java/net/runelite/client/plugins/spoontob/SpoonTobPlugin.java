@@ -112,8 +112,6 @@ public class SpoonTobPlugin extends Plugin {
 
     private String roomCompleteMsg = "";
 
-    public GameObject bankLootChest = null;
-
     public Color raveBankChestColor = Color.WHITE;
 
     public Color flowColor = new Color(75, 25, 150, 255);
@@ -149,7 +147,6 @@ public class SpoonTobPlugin extends Plugin {
         situationalTicksList.clear();
         overlayManager.add(miscOverlay);
         overlayManager.add(tickOverlay);
-        bankLootChest = null;
         roomCompleteMsg = "";
         raveBankChestColor = Color.WHITE;
         if (rooms == null) {
@@ -173,7 +170,6 @@ public class SpoonTobPlugin extends Plugin {
         situationalTicksList.clear();
         overlayManager.remove(miscOverlay);
         overlayManager.remove(tickOverlay);
-        bankLootChest = null;
         modifyCustomObjList(true, true);
         roomCompleteMsg = "";
         raveBankChestColor = Color.WHITE;
@@ -402,30 +398,27 @@ public class SpoonTobPlugin extends Plugin {
             customizedGameObjects.add(new CustomGameObject(obj, id));
             modifyCustomObjList(false, false);
         } else if (id == 41437) {
-            bankLootChest = obj;
+
         }
     }
 
     @Subscribe
     private void onGameObjectDespawned(GameObjectDespawned event) {
         if (event.getGameObject().getId() == 41437) {
-            bankLootChest = null;
         }
     }
 
     @Subscribe
     public void onGameStateChanged(GameStateChanged event) {
-        if (config.lootReminder() != SpoonTobConfig.lootReminderMode.OFF && bankLootChest != null && client.getLocalPlayer() != null) {
+        if (config.lootReminder() != SpoonTobConfig.lootReminderMode.OFF && client.getLocalPlayer() != null) {
             if (client.isInInstancedRegion()) {
                 if (WorldPoint.fromLocalInstance(client, client.getLocalPlayer().getLocalLocation()).getRegionID() != 14642) {
-                    bankLootChest = null;
                     if (client.hasHintArrow()) {
                         client.clearHintArrow();
                     }
                 }
             } else {
                 if (client.getLocalPlayer().getWorldLocation().getRegionID() != 14642) {
-                    bankLootChest = null;
                     if (client.hasHintArrow()) {
                         client.clearHintArrow();
                     }

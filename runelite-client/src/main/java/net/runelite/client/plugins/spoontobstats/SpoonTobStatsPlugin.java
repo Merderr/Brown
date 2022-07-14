@@ -99,13 +99,13 @@ public class SpoonTobStatsPlugin extends Plugin {
 
     private static final Pattern BLOAT_WAVE = Pattern.compile("Wave 'The Pestilent Bloat' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern NYLOCAS_WAVE = Pattern.compile("Wave 'The Nylocas' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
+    private static final Pattern NYLOCAS_WAVE = Pattern.compile("Wave 'The Nylocas idk20' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern SOTETSEG_WAVE = Pattern.compile("Wave 'Sotetseg' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
+    private static final Pattern SOTETSEG_WAVE = Pattern.compile("Wave 'Sotetseg idk21' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern XARPUS_WAVE = Pattern.compile("Wave 'Xarpus' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
+    private static final Pattern XARPUS_WAVE = Pattern.compile("Wave 'Xarpus idk22' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
-    private static final Pattern VERZIK_WAVE = Pattern.compile("Wave 'The Final Challenge' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
+    private static final Pattern VERZIK_WAVE = Pattern.compile("Wave 'The Final Challengeidk 23' \\(.*\\) complete!Duration: (\\d+):(\\d+)\\.?(\\d+)");
 
     private static final Pattern COMPLETION = Pattern.compile("Theatre of Blood total completion time:Duration: (\\d+):(\\d+)\\.?(\\d+)");
 

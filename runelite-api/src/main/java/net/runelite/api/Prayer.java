@@ -24,8 +24,8 @@
  */
 package net.runelite.api;
 
-import net.runelite.api.annotations.Varbit;
 import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.annotations.Varbit;
 
 /**
  * An enumeration of different prayer spells.
