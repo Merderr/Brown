@@ -453,7 +453,7 @@ public class TabInterface
 					.build();
 				break;
 			case Tab.DELETE_TAB:
-				String target = Text.standardize(event.getOpbase());
+				String target = Text.standardize(event.getOpbase(), true);
 				chatboxPanelManager.openTextMenuInput("Delete " + target)
 					.option("1. Tab and tag from all items", () ->
 						clientThread.invoke(() ->
@@ -482,7 +482,7 @@ public class TabInterface
 				notifier.notify("Tag tab " + tagTab.getTag() + " has been copied to your clipboard!");
 				break;
 			case Tab.RENAME_TAB:
-				String renameTarget = Text.standardize(event.getOpbase());
+				String renameTarget = Text.standardize(event.getOpbase(), true);
 				renameTab(renameTarget);
 				break;
 		}
@@ -745,7 +745,7 @@ public class TabInterface
 				if (draggedOn.getId() == parent.getId())
 				{
 					tagManager.addTag(draggedWidget.getItemId(), draggedOn.getName(), shiftDown);
-					updateTabIfActive(Lists.newArrayList(Text.standardize(draggedOn.getName())));
+					updateTabIfActive(Lists.newArrayList(Text.standardize(draggedOn.getName(), true)));
 				}
 			}
 			else if ((isTabMenuActive() && draggedWidget.getId() == draggedOn.getId() && draggedOn.getId() != parent.getId())

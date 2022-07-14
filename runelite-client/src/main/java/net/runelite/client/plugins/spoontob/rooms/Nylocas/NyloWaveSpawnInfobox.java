@@ -28,7 +28,7 @@ public class NyloWaveSpawnInfobox extends OverlayPanel {
         this.config = config;
         setPosition(OverlayPosition.ABOVE_CHATBOX_RIGHT);
         getMenuEntries().add(new OverlayMenuEntry(MenuAction.RUNELITE_OVERLAY_CONFIG, "Configure", "Theatre xarpus overlay"));
-        getMenuEntries().add(new OverlayMenuEntry(MenuAction.RUNELITE_OVERLAY_CONFIG, "Configure", "Theatre xarpus overlay"));
+        //getMenuEntries().add(new OverlayMenuEntry(MenuAction.RUNELITE_OVERLAY_CONFIG, "Configure", "Theatre xarpus overlay"));
     }
 
     public Dimension render(Graphics2D graphics) {

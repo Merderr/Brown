@@ -430,7 +430,7 @@ public class ChatFilterPlugin extends Plugin
 	@VisibleForTesting
 	boolean shouldFilterByName(final String playerName)
 	{
-		String sanitizedName = Text.standardize(playerName);
+		String sanitizedName = Text.standardize(playerName, true);
 		for (Pattern pattern : filteredNamePatterns)
 		{
 			Matcher m = pattern.matcher(sanitizedName);

@@ -79,10 +79,10 @@ public class PvPUtil
     {
         int wildernessLevel = 0;
 
-        if (WorldType.isDeadmanWorld(client.getWorldType()))
+        /*if (WorldType.isDeadmanWorld(client.getWorldType()))
         {
             return true;
-        }
+        }*/
         if (WorldType.isPvpWorld(client.getWorldType()))
         {
             wildernessLevel += 15;

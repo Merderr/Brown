@@ -198,6 +198,18 @@ public class Text
 	}
 
 	/**
+	 * In addition to removing all tags, replaces nbsp with space, trims string and lowercases it
+	 * @param str The string to standardize
+	 *
+	 * @param b
+	 * @return The given `str` that is standardized
+	 */
+	public static String standardize(String str, boolean b)
+	{
+		return removeTags(str).replace('\u00A0', ' ').trim().toLowerCase();
+	}
+
+	/**
 	 * Convert a string into Jagex username format
 	 * Remove all non-ascii characters, replace nbsp with space, replace _- with spaces, and trim
 	 *

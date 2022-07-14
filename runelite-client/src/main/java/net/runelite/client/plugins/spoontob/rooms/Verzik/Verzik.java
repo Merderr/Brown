@@ -186,7 +186,6 @@ public class Verzik extends Room {
     public boolean greenBallOut = false;
     public int greenBallDelay = 0;
 
-    List<GameObject> pillarsPendingRemoval;
     public List<WorldPoint> pillarLocations;
 
     BufferedImage icon = ImageUtil.loadImageResource(SpoonTobPlugin.class, "chinkspeak.png");
@@ -220,7 +219,7 @@ public class Verzik extends Room {
         greenBallBounces = 0;
         greenBallOut = false;
         greenBallDelay = 0;
-        pillarsPendingRemoval = new ArrayList<>();
+        //pillarsPendingRemoval = new ArrayList<>();
         pillarLocations = new ArrayList<>();
     }
 
@@ -457,7 +456,7 @@ public class Verzik extends Room {
 
     @Subscribe
     public void onGameObjectSpawned(GameObjectSpawned event){
-        GameObject gameObject = event.getGameObject();
+        /*GameObject gameObject = event.getGameObject();
         removeGameObjectsFromScene(gameObject);
 
         if (TheatreRegions.inRegion(client, TheatreRegions.VERZIK)) {
@@ -467,11 +466,10 @@ public class Verzik extends Room {
             }
             if (gameObject.getId() == 32687) {
                 pillarLocations.add(gameObject.getWorldLocation());
-                pillarsPendingRemoval.add(gameObject);
             }
             if (gameObject.getId() == 29733)
                 pillarLocations.remove(gameObject.getWorldLocation());
-        }
+        }*/
     }
 
     public void removeGameObjectsFromScene(GameObject gameObject) {
@@ -634,12 +632,6 @@ public class Verzik extends Room {
                 for(int i=0; i<acidSpotsTimer.size(); i++){
                     acidSpotsTimer.set(i, acidSpotsTimer.get(i) - 1);
                 }
-            }
-
-            if (config.deletePillars()) {
-                for (GameObject pillar : pillarsPendingRemoval)
-                    removeGameObjectsFromScene(pillar);
-                pillarsPendingRemoval.clear();
             }
 
             if (!verzikRangeProjectiles.isEmpty()) {
@@ -965,7 +957,7 @@ public class Verzik extends Room {
         greenBallBounces = 0;
         greenBallOut = false;
         greenBallDelay = 0;
-        pillarsPendingRemoval = new ArrayList<>();
+        //pillarsPendingRemoval = new ArrayList<>();
         pillarLocations = new ArrayList<>();
     }
 

@@ -24,8 +24,6 @@
  */
 package net.runelite.client.config;
 
-import net.runelite.client.plugins.nex.NexConfig;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -43,8 +41,6 @@ public @interface ConfigItem
 
 	String description();
 
-	String unhide() default "";
-
 	boolean hidden() default false;
 
 	String warning() default "";
@@ -52,6 +48,8 @@ public @interface ConfigItem
 	boolean secret() default false;
 
 	String section() default "";
+
+	String unhide() default "";
 
 	/**
 	 * Use this to indicate the enum class that is going to be used in the multiple select config.

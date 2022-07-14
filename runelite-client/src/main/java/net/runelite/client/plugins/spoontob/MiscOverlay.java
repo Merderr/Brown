@@ -28,7 +28,7 @@ public class MiscOverlay extends Overlay {
 
     @Override
     public Dimension render(Graphics2D graphics) {
-        if (config.lootReminder() != SpoonTobConfig.lootReminderMode.OFF && plugin.bankLootChest != null && this.client.getLocalPlayer() != null) {
+        /*if (config.lootReminder() != SpoonTobConfig.lootReminderMode.OFF && plugin.bankLootChest != null && this.client.getLocalPlayer() != null) {
             Color raveColor = plugin.raveUtils.getColor(plugin.bankLootChest.hashCode(), true);
             if(plugin.bankLootChest.getRenderable().getModel().getModelHeight() == 119) {
                 if(config.lootReminder() == SpoonTobConfig.lootReminderMode.DUMBER || config.lootReminder() == SpoonTobConfig.lootReminderMode.DUMBEST
@@ -58,7 +58,7 @@ public class MiscOverlay extends Overlay {
                 plugin.bankLootChest = null;
                 this.client.clearHintArrow();
             }
-        }
+        }*/
         return null;
     }
-}
+    }

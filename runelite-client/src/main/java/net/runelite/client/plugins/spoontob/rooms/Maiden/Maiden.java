@@ -384,6 +384,7 @@ public class Maiden extends Room {
                     && (config.removeMaidenBloods() == SpoonTobConfig.maidenBloodsMode.ATTACK || config.removeMaidenBloods() == SpoonTobConfig.maidenBloodsMode.BOTH)) {
                 NPC npc = client.getCachedNPCs()[event.getIdentifier()];
                 if (npc != null) {
+
                 }
             } else if (event.getTarget().contains("Blood spawn") && event.getTarget().contains("Ice B") && event.getType() == MenuAction.WIDGET_TARGET_ON_NPC.getId()
                     && (config.removeMaidenBloods() == SpoonTobConfig.maidenBloodsMode.CAST || config.removeMaidenBloods() == SpoonTobConfig.maidenBloodsMode.BOTH)) {
@@ -490,7 +491,7 @@ public class Maiden extends Room {
                             }
                         }
                     }
-                     //client.setMenuEntries(newEntries);
+                     client.setMenuEntries(newEntries);
                 }
             }
         }

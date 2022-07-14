@@ -72,15 +72,6 @@ public interface Client extends OAuthApi, GameEngine
 	String getBuildID();
 
 	/**
-	 * Set the amount of menu entries the client has.
-	 * If you decrement this count, it's the same as removing the last one
-	 */
-	void setMenuOptionCount(int count);
-	int getMenuOptionCount();
-	void setKeyboardIdleTicks(int cycles);
-	void setMouseIdleTicks(int cycles);
-
-	/**
 	 * Gets a list of all valid players from the player cache.
 	 *
 	 * @return a list of all players
@@ -100,6 +91,17 @@ public interface Client extends OAuthApi, GameEngine
 	 * @return cached NPCs
 	 */
 	NPC[] getCachedNPCs();
+
+	/**
+	 * @return amount of menu entries the client has (same as client.getMenuEntries().size())
+	 */
+	int getMenuOptionCount();
+
+	/**
+	 * Set the amount of menu entries the client has.
+	 * If you decrement this count, it's the same as removing the last one
+	 */
+	void setMenuOptionCount(int count);
 
 	/**
 	 * Gets an array of all cached players.
@@ -836,7 +838,6 @@ public interface Client extends OAuthApi, GameEngine
 	 */
 	int getVarbitValue(@Varbit int varbit);
 
-
 	/**
 	 * Gets the value of the given varbit.
 	 * This returns the server's idea of the value, not the client's. This is
@@ -899,16 +900,6 @@ public interface Client extends OAuthApi, GameEngine
 	 * @param value the new value
 	 */
 	void setVarcIntValue(@VarCInt int var, int value);
-
-	/**
-	 * Sets a VarClientString to the passed value
-	 */
-	void setVar(VarClientStr varClientStr, String value);
-
-	/**
-	 * Sets a VarClientInt to the passed value
-	 */
-	void setVar(VarClientInt varClientStr, int value);
 
 	/**
 	 * Sets the value of a varbit
@@ -1151,7 +1142,7 @@ public interface Client extends OAuthApi, GameEngine
 	 * @return the new projectile
 	 */
 	Projectile createProjectile(int id, int plane, int startX, int startY, int startZ, int startCycle, int endCycle,
-		int slope, int startHeight, int endHeight, @Nullable Actor target, int targetX, int targetY);
+								int slope, int startHeight, int endHeight, @Nullable Actor target, int targetX, int targetY);
 
 	/**
 	 * Gets a list of all projectiles currently spawned.
@@ -1369,17 +1360,6 @@ public interface Client extends OAuthApi, GameEngine
 	 */
 	int getStringStackSize();
 
-	String getSelectedSpellName();
-	void setSelectedSpellName(String name);
-	void setSelectedSpellWidget(int widgetID);
-
-	void setSelectedSpellChildIndex(int index);
-
-	/**
-	 * Adds a MenuEntry to the current menu.
-	 */
-	void insertMenuItem(String action, String target, int opcode, int identifier, int argument1, int argument2, boolean forceLeftClick);
-
 	/**
 	 * Sets the length of the cs2 vm's string stack
 	 */
@@ -1502,7 +1482,7 @@ public interface Client extends OAuthApi, GameEngine
 	 * factors towards {@code zero} when stretching.
 	 *
 	 * @param state new integer scaling state
-	*/
+	 */
 	void setStretchedIntegerScaling(boolean state);
 
 	/**
@@ -2046,5 +2026,4 @@ public interface Client extends OAuthApi, GameEngine
 	 * @return
 	 */
 	Deque<AmbientSoundEffect> getAmbientSoundEffects();
-
 }

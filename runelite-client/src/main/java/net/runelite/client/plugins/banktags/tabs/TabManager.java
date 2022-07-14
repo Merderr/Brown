@@ -71,7 +71,7 @@ class TabManager
 
 	TagTab find(String tag)
 	{
-		Optional<TagTab> first = tabs.stream().filter(t -> t.getTag().equals(Text.standardize(tag))).findAny();
+		Optional<TagTab> first = tabs.stream().filter(t -> t.getTag().equals(Text.standardize(tag, true))).findAny();
 		return first.orElse(null);
 	}
 
@@ -86,7 +86,7 @@ class TabManager
 
 		if (tagTab == null)
 		{
-			tag = Text.standardize(tag);
+			tag = Text.standardize(tag, true);
 			String item = configManager.getConfiguration(CONFIG_GROUP, ICON_SEARCH + tag);
 			int itemid = NumberUtils.toInt(item, ItemID.SPADE);
 			tagTab = new TagTab(itemid, tag);
@@ -97,8 +97,8 @@ class TabManager
 
 	void swap(String tagToMove, String tagDestination)
 	{
-		tagToMove = Text.standardize(tagToMove);
-		tagDestination = Text.standardize(tagDestination);
+		tagToMove = Text.standardize(tagToMove, true);
+		tagDestination = Text.standardize(tagDestination, true);
 
 		if (contains(tagToMove) && contains(tagDestination))
 		{
@@ -108,8 +108,8 @@ class TabManager
 
 	void insert(String tagToMove, String tagDestination)
 	{
-		tagToMove = Text.standardize(tagToMove);
-		tagDestination = Text.standardize(tagDestination);
+		tagToMove = Text.standardize(tagToMove, true);
+		tagDestination = Text.standardize(tagDestination, true);
 
 		if (contains(tagToMove) && contains(tagDestination))
 		{
@@ -137,12 +137,12 @@ class TabManager
 
 	void removeIcon(final String tag)
 	{
-		configManager.unsetConfiguration(CONFIG_GROUP, ICON_SEARCH + Text.standardize(tag));
+		configManager.unsetConfiguration(CONFIG_GROUP, ICON_SEARCH + Text.standardize(tag, true));
 	}
 
 	void setIcon(final String tag, final String icon)
 	{
-		configManager.setConfiguration(CONFIG_GROUP, ICON_SEARCH + Text.standardize(tag), icon);
+		configManager.setConfiguration(CONFIG_GROUP, ICON_SEARCH + Text.standardize(tag, true), icon);
 	}
 
 	int size()

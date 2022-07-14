@@ -101,7 +101,7 @@ public class TagManager
 	public void addTag(int itemId, String tag, boolean variation)
 	{
 		final Collection<String> tags = getTags(itemId, variation);
-		if (tags.add(Text.standardize(tag)))
+		if (tags.add(Text.standardize(tag, true)))
 		{
 			setTags(itemId, tags, variation);
 		}
@@ -122,7 +122,7 @@ public class TagManager
 
 		Collection<String> tags = getTags(itemId, false);
 		tags.addAll(getTags(itemId, true));
-		return tags.stream().anyMatch(tag -> tag.startsWith(Text.standardize(search)));
+		return tags.stream().anyMatch(tag -> tag.startsWith(Text.standardize(search, true)));
 	}
 
 	public List<Integer> getItemsForTag(String tag)
@@ -147,13 +147,13 @@ public class TagManager
 	public void removeTag(int itemId, String tag)
 	{
 		Collection<String> tags = getTags(itemId, false);
-		if (tags.remove(Text.standardize(tag)))
+		if (tags.remove(Text.standardize(tag, true)))
 		{
 			setTags(itemId, tags, false);
 		}
 
 		tags = getTags(itemId, true);
-		if (tags.remove(Text.standardize(tag)))
+		if (tags.remove(Text.standardize(tag, true)))
 		{
 			setTags(itemId, tags, true);
 		}
@@ -161,13 +161,13 @@ public class TagManager
 
 	public void renameTag(String oldTag, String newTag)
 	{
-		List<Integer> items = getItemsForTag(Text.standardize(oldTag));
+		List<Integer> items = getItemsForTag(Text.standardize(oldTag, true));
 		items.forEach(id ->
 		{
 			Collection<String> tags = getTags(id, id < 0);
 
-			tags.remove(Text.standardize(oldTag));
-			tags.add(Text.standardize(newTag));
+			tags.remove(Text.standardize(oldTag, true));
+			tags.add(Text.standardize(newTag, true));
 
 			setTags(id, tags, id < 0);
 		});

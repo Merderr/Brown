@@ -9,7 +9,6 @@ import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.*;
 import net.runelite.api.kit.KitType;
-import net.runelite.client.plugins.hotkeyablemenuswaps.HotkeyableMenuSwapsPlugin;
 import net.runelite.client.util.Text;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
@@ -24,7 +23,6 @@ import net.runelite.client.plugins.spoontob.util.WeaponMap;
 import net.runelite.client.plugins.spoontob.util.WeaponStyle;
 import net.runelite.client.ui.overlay.components.InfoBoxComponent;
 import net.runelite.client.util.ColorUtil;
-import net.runelite.client.util.WildcardMatcher;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +32,6 @@ import java.awt.*;
 import java.time.Instant;
 import java.util.List;
 import java.util.*;
-import java.util.function.Supplier;
 
 import static net.runelite.api.NpcID.*;
 
@@ -1050,33 +1047,33 @@ public class Nylocas extends Room {
                         if (target.contains(MELEE_NYLO) || target.contains(RANGE_NYLO)) {
                             if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
                                 return;
-                            }
+                             }
                             menuEntry.setDeprioritized(true);
-                        }
+                    }
                         break;
                     case MELEE:
                         if (target.contains(RANGE_NYLO) || target.contains(MAGE_NYLO)) {
-                            if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
-                                return;
-                            }
-                            menuEntry.setDeprioritized(true);
+                        if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
+                            return;
                         }
+                        menuEntry.setDeprioritized(true);
+                    }
                         break;
                     case RANGE:
                         if (target.contains(MELEE_NYLO) || target.contains(MAGE_NYLO)) {
                             if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
                                 return;
-                            }
+                             }
                             menuEntry.setDeprioritized(true);
-                        }
+                    }
                         break;
                     case CHINS:
                         if (!config.ignoreChins() && (target.contains(MELEE_NYLO) || target.contains(MAGE_NYLO))) {
                             if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
                                 return;
-                            }
+                             }
                             menuEntry.setDeprioritized(true);
-                        }
+                    }
                         break;
                 }
             }
@@ -1088,8 +1085,8 @@ public class Nylocas extends Room {
                     if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10805) {
                         if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
                             return;
-                        }
-                        menuEntry.setDeprioritized(true);
+                         }
+                         menuEntry.setDeprioritized(true);
                     }
                     break;
                 case MELEE:
@@ -1104,7 +1101,7 @@ public class Nylocas extends Room {
                     if (nyloMiniboss.getId() != NYLOCAS_PRINKIPAS_10806) {
                         if (menuEntry.getType() != MenuAction.NPC_SECOND_OPTION || !menuEntry.getOption().equals("Attack")) {
                             return;
-                        }
+                         }
                         menuEntry.setDeprioritized(true);
                     }
                     break;
@@ -1126,7 +1123,7 @@ public class Nylocas extends Room {
     }
 
     public void removeGameObjectsFromScene(Set<Integer> objectIDs, int plane) {
-        Scene scene = client.getScene();
+       Scene scene = client.getScene();
         Tile[][] tiles = scene.getTiles()[plane];
         for (int x = 0; x < 104; x++) {
             for (int y = 0; y < 104; y++) {
