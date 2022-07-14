@@ -187,16 +187,6 @@ public class Text
 		return removeTags(str).replace('\u00A0', ' ').trim().toLowerCase();
 	}
 
-	public static String standardize(String str, boolean removeLevel)
-	{
-		if (StringUtils.isBlank(str))
-		{
-			return str;
-		}
-
-		return removeTags(str, removeLevel).replace('\u00A0', ' ').trim().toLowerCase();
-	}
-
 	/**
 	 * In addition to removing all tags, replaces nbsp with space, trims string and lowercases it
 	 * @param str The string to standardize
