@@ -235,6 +235,7 @@ public class Olm
             if (o.getId() == GraphicID.OLM_HEAL)
             {
                 healPools.add(WorldPoint.fromLocal(client, o.getLocation()));
+                healPools.add(WorldPoint.fromLocal(client, o.getLocation()));
             }
             if (!portals.isEmpty())
             {
@@ -255,7 +256,7 @@ public class Olm
             return;
         }
 
-        OlmAnimation currentAnimation = OlmAnimation.fromId(((DynamicObject) head.getRenderable()).getAnimationID());
+        OlmAnimation currentAnimation = OlmAnimation.fromId(((DynamicObject) head.getRenderable()).getAnimation().getId());
 
         if (currentAnimation == headAnimation)
         {
@@ -287,7 +288,7 @@ public class Olm
             return;
         }
 
-        OlmAnimation currentAnimation = OlmAnimation.fromId(((DynamicObject) hand.getRenderable()).getAnimationID());
+        OlmAnimation currentAnimation = OlmAnimation.fromId(((DynamicObject) hand.getRenderable()).getAnimation().getId());
 
         if (currentAnimation == handAnimation)
         {
