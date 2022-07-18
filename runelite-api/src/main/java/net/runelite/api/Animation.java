@@ -35,4 +35,19 @@ public interface Animation
 	 * @return
 	 */
 	int getId();
+
+	Skeleton getSkeleton();
+
+	int getTransformCount();
+
+	int[] getTransformTypes();
+
+	int[] getTranslatorX();
+
+	int[] getTranslatorY();
+
+	int[] getTranslatorZ();
+
+	boolean isShowing();
+
 }

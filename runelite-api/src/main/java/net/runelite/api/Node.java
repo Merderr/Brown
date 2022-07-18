@@ -49,4 +49,6 @@ public interface Node
 	 * @return the hash value
 	 */
 	long getHash();
+
+	void unlink();
 }

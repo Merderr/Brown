@@ -56,6 +56,10 @@ public interface Widget
 	 */
 	int getId();
 
+	boolean isWidgetItemDragged(int index);
+
+	Point getWidgetItemDragOffsets();
+
 	/**
 	 * Gets the type of the widget.
 	 *

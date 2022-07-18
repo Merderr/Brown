@@ -139,6 +139,11 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>io.reactivex.rxjava3</groupId>
+				<artifactId>rxjava</artifactId>
+				<version>3.1.5</version>
+			</dependency>
+			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>23.2-jre</version>

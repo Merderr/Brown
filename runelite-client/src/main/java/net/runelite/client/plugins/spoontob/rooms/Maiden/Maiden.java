@@ -491,7 +491,7 @@ public class Maiden extends Room {
                             }
                         }
                     }
-                     client.setMenuEntries(newEntries);
+                     //client.setMenuEntries(newEntries);
                 }
             }
         }

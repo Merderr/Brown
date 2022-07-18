@@ -61,4 +61,7 @@ public final class GraphicID
 	public static final int ZALCANO_PROJECTILE_FIREBALL = 1728;
 	public static final int CANNONBALL_OR = 2018;
 	public static final int GRANITE_CANNONBALL_OR = 2019;
+	public static final int OLM_BURN = 1351;
+	public static final int OLM_TELEPORT = 1359;
+	public static final int OLM_HEAL = 1363;
 }

@@ -44,6 +44,7 @@ public @interface Units
 	String PIXELS = "px";
 	String SECONDS = "s";
 	String TICKS = " ticks";
+	String POINTS = "pt";
 
 	String value();
 }

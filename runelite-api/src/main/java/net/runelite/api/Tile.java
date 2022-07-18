@@ -31,8 +31,7 @@ import net.runelite.api.coords.WorldPoint;
 /**
  * Represents a tile in the game.
  */
-public interface Tile
-{
+public interface Tile extends Locatable {
 	/**
 	 * Gets the decoration on the tile.
 	 *
