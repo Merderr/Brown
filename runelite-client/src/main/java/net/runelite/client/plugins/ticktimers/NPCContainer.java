@@ -4,10 +4,8 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.awt.Color;
 import java.util.Objects;
-import net.runelite.api.Actor;
-import net.runelite.api.NPC;
-import net.runelite.api.NPCComposition;
-import net.runelite.api.Prayer;
+
+import net.runelite.api.*;
 
 class NPCContainer {
     private final NPC npc;
@@ -115,7 +113,7 @@ class NPCContainer {
     }
 
     enum BossMonsters {
-        SERGEANT_STRONGSTACK(2216, NPCContainer.AttackStyle.MELEE, ImmutableSet.of(Integer.valueOf(6154), Integer.valueOf(6156), Integer.valueOf(7071)), 5),
+        SERGEANT_STRONGSTACK(2216, AttackStyle.MELEE, ImmutableSet.of(6154, 6156, 7071), 5),
         SERGEANT_STEELWILL(2217, NPCContainer.AttackStyle.MAGE, ImmutableSet.of(Integer.valueOf(6154), Integer.valueOf(6156), Integer.valueOf(7071)), 5),
         SERGEANT_GRIMSPIKE(2218, NPCContainer.AttackStyle.RANGE, ImmutableSet.of(Integer.valueOf(6154), Integer.valueOf(6156), Integer.valueOf(7073)), 5),
         GENERAL_GRAARDOR(2215, NPCContainer.AttackStyle.MELEE, ImmutableSet.of(Integer.valueOf(7018), Integer.valueOf(7020), Integer.valueOf(7021)), 6),
@@ -124,13 +122,14 @@ class NPCContainer {
         ZAKLN_GRITCH(3131, NPCContainer.AttackStyle.RANGE, ImmutableSet.of(Integer.valueOf(64), Integer.valueOf(7077)), 5),
         KRIL_TSUTSAROTH(3129, NPCContainer.AttackStyle.UNKNOWN, ImmutableSet.of(Integer.valueOf(6950), Integer.valueOf(6948)), 6),
         STARLIGHT(2206, NPCContainer.AttackStyle.MELEE, ImmutableSet.of(Integer.valueOf(6376)), 5),
-        GROWLER(2207, NPCContainer.AttackStyle.MAGE, ImmutableSet.of(Integer.valueOf(7037)), 5),
+        GROWLER(2207, NPCContainer.AttackStyle.MAGE, ImmutableSet.of(7037), 5),
         BREE(2208, NPCContainer.AttackStyle.RANGE, ImmutableSet.of(Integer.valueOf(7026)), 5),
         COMMANDER_ZILYANA(2205, NPCContainer.AttackStyle.UNKNOWN, ImmutableSet.of(Integer.valueOf(6967), Integer.valueOf(6964), Integer.valueOf(6970)), 2),
         FLIGHT_KILISA(3165, NPCContainer.AttackStyle.MELEE, ImmutableSet.of(Integer.valueOf(6957)), 5),
         FLOCKLEADER_GEERIN(3164, NPCContainer.AttackStyle.RANGE, ImmutableSet.of(Integer.valueOf(6956), Integer.valueOf(6958)), 5),
         WINGMAN_SKREE(3163, NPCContainer.AttackStyle.MAGE, ImmutableSet.of(Integer.valueOf(6955)), 5),
-        KREEARRA(3162, NPCContainer.AttackStyle.RANGE, ImmutableSet.of(Integer.valueOf(6978)), 3);
+        KREEARRA(3162, NPCContainer.AttackStyle.RANGE, ImmutableSet.of(6978), 3);
+
 
         BossMonsters(int npcID, NPCContainer.AttackStyle attackStyle, ImmutableSet<Integer> animations, int attackSpeed) {
             this.npcID = npcID;

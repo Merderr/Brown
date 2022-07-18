@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Jordan Atwood <jordan.atwood423@gmail.com>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,25 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.api;
+package net.runelite.client.plugins.fightcave;
 
-/**
- * Represents an object that can be rendered.
- */
-public interface Renderable extends Node
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+public enum WaveDisplayMode
 {
-	/**
-	 * Gets the model of the object.
-	 */
-	Model getModel();
+    CURRENT("Current wave"),
+    NEXT("Next wave"),
+    BOTH("Both"),
+    NONE("None");
 
-	/**
-	 * Gets the height of the model.
-	 */
-	int getModelHeight();
+    private final String name;
 
-	void setModelHeight(int modelHeight);
-
-	void draw(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash);
-
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 }

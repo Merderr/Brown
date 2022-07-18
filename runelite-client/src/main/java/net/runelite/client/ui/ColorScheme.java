@@ -66,4 +66,5 @@ public class ColorScheme
 	/* The background color of the scrollbar's track */
 	public static final Color SCROLL_TRACK_COLOR = new Color(25, 25, 25);
 
+    public static final Color BRAND_BLUE = new Color(25,25,25);
 }
