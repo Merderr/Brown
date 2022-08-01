@@ -199,15 +199,14 @@ class InfernoNPC
         {
             this.ticksTillNextAttack--;
         }
-
         //Jad animation detection
-        if (this.getType() == Type.JAD && this.getNpc().getAnimation() != -1 && this.getNpc().getAnimation() != this.lastAnimation)
+        if (getType() == Type.JAD && getNpc().getAnimation() != -1 && getNpc().getAnimation() != lastAnimation)
         {
-            final InfernoNPC.Attack currentAttack = InfernoNPC.Attack.attackFromId(this.getNpc().getAnimation());
+            final InfernoNPC.Attack currentAttack = InfernoNPC.Attack.attackFromId(getNpc().getAnimation());
 
             if (currentAttack != null && currentAttack != Attack.UNKNOWN)
             {
-                this.updateNextAttack(currentAttack, this.getType().getTicksAfterAnimation());
+                updateNextAttack(currentAttack, getType().getTicksAfterAnimation());
             }
         }
 
@@ -233,10 +232,10 @@ class InfernoNPC
                     }
                     break;
                 case JAD:
-                    if (this.getNextAttack() != Attack.UNKNOWN)
+                    if (getNextAttack() != Attack.UNKNOWN)
                     {
                         // Jad's cycle continuous after his animation + attack but there's no animation to alert it
-                        this.updateNextAttack(this.getType().getDefaultAttack(), 8);
+                        updateNextAttack(getType().getDefaultAttack(), 8);
                     }
                     break;
                 case BLOB:

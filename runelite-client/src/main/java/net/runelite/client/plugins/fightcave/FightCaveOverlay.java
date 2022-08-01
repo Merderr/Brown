@@ -88,7 +88,7 @@ public class FightCaveOverlay extends Overlay
             Color color = (ticksLeft <= 1 ? Color.WHITE : attackStyle.getColor());
             final Point canvasPoint = npc.getNpc().getCanvasTextLocation(graphics, Integer.toString(ticksLeft), 0);
 
-            if (npc.getNpcName().equals("TzTok-Jad"))
+            if (npc.getNpcName().equals("TzTok-Jad") || npc.getNpcName().equals("JalTok-Jad"))
             {
                 color = (ticksLeft <= 1 || ticksLeft == 8 ? attackStyle.getColor() : Color.WHITE);
 

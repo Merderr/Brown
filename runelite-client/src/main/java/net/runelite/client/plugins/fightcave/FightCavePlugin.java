@@ -137,6 +137,8 @@ public class FightCavePlugin extends Plugin
     public static final int TZTOK_JAD_RANGE_ATTACK = 2652;
     public static final int TZTOK_JAD_MELEE_ATTACK = 2655;
     public static final int TZTOK_JAD_MAGIC_ATTACK = 2656;
+    public static final int JALTOK_JAD_MAGE_ATTACK = 7592;
+    public static final int JALTOK_JAD_RANGE_ATTACK = 7593;
     public static final int TOK_XIL_RANGE_ATTACK = 2633;
     public static final int TOK_XIL_MELEE_ATTACK = 2628;
     public static final int KET_ZEK_MELEE_ATTACK = 2644;
@@ -236,6 +238,7 @@ public class FightCavePlugin extends Plugin
             case NpcID.KETZEK_3126:
             case NpcID.TZTOKJAD:
             case NpcID.TZTOKJAD_6506:
+            case NpcID.JALTOKJAD_10623:
                 fightCaveContainer.add(new FightCaveContainer(npc));
                 break;
         }
@@ -261,6 +264,7 @@ public class FightCavePlugin extends Plugin
             case NpcID.KETZEK_3126:
             case NpcID.TZTOKJAD:
             case NpcID.TZTOKJAD_6506:
+            case NpcID.JALTOKJAD_10623:
                 fightCaveContainer.removeIf(c -> c.getNpc() == npc);
                 break;
         }
@@ -296,9 +300,11 @@ public class FightCavePlugin extends Plugin
 
                     switch (anims)
                     {
+                        case JALTOK_JAD_RANGE_ATTACK:
                         case TZTOK_JAD_RANGE_ATTACK:
                             npc.setAttackStyle(FightCaveContainer.AttackStyle.RANGE);
                             break;
+                        case JALTOK_JAD_MAGE_ATTACK:
                         case TZTOK_JAD_MAGIC_ATTACK:
                             npc.setAttackStyle(FightCaveContainer.AttackStyle.MAGE);
                             break;
@@ -309,7 +315,7 @@ public class FightCavePlugin extends Plugin
                 }
             }
 
-            if (npc.getNpcName().equals("TzTok-Jad"))
+            if (npc.getNpcName().equals("TzTok-Jad") || npc.getNpcName().equals("JalTok-Jad"))
             {
                 continue;
             }

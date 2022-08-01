@@ -58,4 +58,6 @@ public @interface ConfigItem
 	 * @return The Enum that will be used for the multiple select
 	 */
 	Class<? extends Enum> enumClass() default Enum.class;
+
+    String title() default "";
 }

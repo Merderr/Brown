@@ -238,7 +238,7 @@ public class PluginManager {
     }
 
     public void loadSideLoadPlugins() {
-        if (!developerMode) {
+        if (developerMode) {
             return;
         }
 
