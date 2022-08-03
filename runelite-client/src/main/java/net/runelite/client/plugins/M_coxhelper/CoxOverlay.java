@@ -23,7 +23,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.runelite.client.plugins.coxhelper;
+package net.runelite.client.plugins.M_coxhelper;
 
 import com.google.common.collect.ImmutableSet;
 import java.awt.BasicStroke;

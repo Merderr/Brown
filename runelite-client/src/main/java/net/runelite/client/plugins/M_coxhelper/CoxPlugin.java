@@ -25,7 +25,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.runelite.client.plugins.coxhelper;
+package net.runelite.client.plugins.M_coxhelper;
 
 import com.google.inject.Provides;
 import java.util.HashMap;
@@ -62,11 +62,10 @@ import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;;
-import net.runelite.client.plugins.ProjectileID;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 @PluginDescriptor(
-        name = "CoX Helper",
+        name = "[M] CoX Helper",
         enabledByDefault = false,
         description = "All-in-one plugin for Chambers of Xeric",
         tags = {"CoX", "chamber", "xeric", "helper"}
