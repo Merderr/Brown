@@ -342,7 +342,7 @@ public class Xarpus extends Room {
     @Subscribe
     public void onHitsplatApplied(HitsplatApplied event) {
         if (event.getActor() != null && event.getActor().getName() != null) {
-            if (event.getActor().getName().toLowerCase().contains("xarpus") && event.getHitsplat().getHitsplatType() == HitsplatType.HEAL) {
+            if (event.getActor().getName().toLowerCase().contains("xarpus") && event.getHitsplat().getHitsplatType1() == HitsplatType.HEAL) {
                 healCount += event.getHitsplat().getAmount();
                 addCounter();
                 updateCounter();

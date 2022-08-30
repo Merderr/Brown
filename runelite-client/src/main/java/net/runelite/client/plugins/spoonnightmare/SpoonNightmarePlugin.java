@@ -771,7 +771,7 @@ public class SpoonNightmarePlugin extends Plugin {
         if(event.getActor() != null && event.getActor() instanceof NPC){
             String name = event.getActor().getName();
             int id = ((NPC) event.getActor()).getId();
-            Hitsplat.HitsplatType splatType = event.getHitsplat().getHitsplatType();
+            Hitsplat.HitsplatType splatType = event.getHitsplat().getHitsplatType1();
 
             if(name != null && splatType == Hitsplat.HitsplatType.HEAL
                     && (name.equalsIgnoreCase("the nightmare") || (name.equalsIgnoreCase("phosani's nightmare") && event.getHitsplat().getAmount() != 149))){

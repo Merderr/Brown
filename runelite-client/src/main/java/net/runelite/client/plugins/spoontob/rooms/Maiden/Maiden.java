@@ -579,11 +579,11 @@ public class Maiden extends Room {
 
     @Subscribe
     public void onHitsplatApplied(HitsplatApplied e) {
-        if (maidenActive) {
+        /*if (maidenActive) {
             if (e.getActor() instanceof NPC) {
                 NPC npc = (NPC)e.getActor();
                 if (npc == maidenNPC) {
-                    Hitsplat.HitsplatType type = e.getHitsplat().getHitsplatType();
+                    Hitsplat.HitsplatType type = e.getHitsplat().getHitsplatType1();
                     switch(type) {
                         case HEAL:
                             realMaidenHp = (short)(realMaidenHp + e.getHitsplat().getAmount());
@@ -596,7 +596,7 @@ public class Maiden extends Room {
                     }
                 }
             }
-        }
+        }*/
     }
 
     @Subscribe

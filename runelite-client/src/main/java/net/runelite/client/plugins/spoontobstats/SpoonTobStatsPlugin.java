@@ -1059,7 +1059,7 @@ public class SpoonTobStatsPlugin extends Plugin {
             int totalDmg = ((Integer)this.totalDamage.getOrDefault(npcName, Integer.valueOf(0))).intValue();
             totalDmg += hitsplat.getAmount();
             this.totalDamage.put(npcName, Integer.valueOf(totalDmg));
-        } else if (hitsplat.getHitsplatType() == Hitsplat.HitsplatType.HEAL) {
+        } else if (hitsplat.getHitsplatType1() == Hitsplat.HitsplatType.HEAL) {
             int healed = ((Integer)this.totalHealing.getOrDefault(npcName, Integer.valueOf(0))).intValue();
             healed += hitsplat.getAmount();
             this.totalHealing.put(npcName, Integer.valueOf(healed));
