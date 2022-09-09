@@ -92,29 +92,6 @@ public interface Client extends OAuthApi, GameEngine
 	NPC[] getCachedNPCs();
 
 	/**
-	 * @return amount of menu entries the client has (same as client.getMenuEntries().size())
-	 */
-	int getMenuOptionCount();
-
-	/**
-	 * Get the amount of time until the client automatically logs out due to idle input.
-	 * @return client ticks
-	 */
-	int getIdleTimeout();
-
-	/**
-	 * Set the amount of time until the client automatically logs out due idle input.
-	 * @param ticks client ticks
-	 */
-	void setIdleTimeout(int ticks);
-
-	/**
-	 * Set the amount of menu entries the client has.
-	 * If you decrement this count, it's the same as removing the last one
-	 */
-	void setMenuOptionCount(int count);
-
-	/**
 	 * Gets an array of all cached players.
 	 *
 	 * @return cached players
@@ -1157,7 +1134,7 @@ public interface Client extends OAuthApi, GameEngine
 	 * @return the new projectile
 	 */
 	Projectile createProjectile(int id, int plane, int startX, int startY, int startZ, int startCycle, int endCycle,
-								int slope, int startHeight, int endHeight, @Nullable Actor target, int targetX, int targetY);
+		int slope, int startHeight, int endHeight, @Nullable Actor target, int targetX, int targetY);
 
 	/**
 	 * Gets a list of all projectiles currently spawned.
@@ -1497,7 +1474,7 @@ public interface Client extends OAuthApi, GameEngine
 	 * factors towards {@code zero} when stretching.
 	 *
 	 * @param state new integer scaling state
-	 */
+	*/
 	void setStretchedIntegerScaling(boolean state);
 
 	/**
@@ -2041,4 +2018,16 @@ public interface Client extends OAuthApi, GameEngine
 	 * @return
 	 */
 	Deque<AmbientSoundEffect> getAmbientSoundEffects();
+
+	/**
+	 * Set the amount of time until the client automatically logs out due to idle input.
+	 * @param ticks client ticks
+	 */
+	void setIdleTimeout(int ticks);
+
+	/**
+	 * Get the amount of time until the client automatically logs out due to idle input.
+	 * @return client ticks
+	 */
+	int getIdleTimeout();
 }
