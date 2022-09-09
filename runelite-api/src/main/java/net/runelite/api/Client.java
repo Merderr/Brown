@@ -97,6 +97,18 @@ public interface Client extends OAuthApi, GameEngine
 	int getMenuOptionCount();
 
 	/**
+	 * Get the amount of time until the client automatically logs out due to idle input.
+	 * @return client ticks
+	 */
+	int getIdleTimeout();
+
+	/**
+	 * Set the amount of time until the client automatically logs out due idle input.
+	 * @param ticks client ticks
+	 */
+	void setIdleTimeout(int ticks);
+
+	/**
 	 * Set the amount of menu entries the client has.
 	 * If you decrement this count, it's the same as removing the last one
 	 */
