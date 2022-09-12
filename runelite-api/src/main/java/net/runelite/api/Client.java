@@ -668,6 +668,17 @@ public interface Client extends OAuthApi, GameEngine
 	void setMenuEntries(MenuEntry[] entries);
 
 	/**
+	 * Set the amount of menu entries the client has.
+	 * If you decrement this count, it's the same as removing the last one
+	 */
+	void setMenuOptionCount(int count);
+
+	/**
+	 * @return amount of menu entries the client has (same as client.getMenuEntries().size())
+	 */
+	int getMenuOptionCount();
+
+	/**
 	 * Checks whether a right-click menu is currently open.
 	 *
 	 * @return true if a menu is open, false otherwise
