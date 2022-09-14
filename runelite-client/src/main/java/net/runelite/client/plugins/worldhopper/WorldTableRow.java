@@ -65,6 +65,7 @@ class WorldTableRow extends JPanel
 	private static final Color FREE_WORLD = new Color(200, 200, 200);
 	private static final Color SEASONAL_WORLD = new Color(133, 177, 178);
 	private static final Color PVP_ARENA_WORLD = new Color(144, 179, 255);
+	private static final Color QUEST_SPEEDRUNNING_WORLD = new Color(94, 213, 201);
 
 	static
 	{
@@ -190,8 +191,8 @@ class WorldTableRow extends JPanel
 	void setFavoriteMenu(boolean favorite)
 	{
 		String favoriteAction = favorite ?
-				"Remove " + world.getId() + " from favorites" :
-				"Add " + world.getId() + " to favorites";
+			"Remove " + world.getId() + " from favorites" :
+			"Add " + world.getId() + " to favorites";
 
 		favoriteMenuOption.setText(favoriteAction);
 
@@ -253,8 +254,8 @@ class WorldTableRow extends JPanel
 
 		EnumSet<WorldType> types = world.getTypes();
 		if (types.contains(WorldType.PVP)
-				|| types.contains(WorldType.HIGH_RISK)
-				|| types.contains(WorldType.DEADMAN))
+			|| types.contains(WorldType.HIGH_RISK)
+			|| types.contains(WorldType.DEADMAN))
 		{
 			activityField.setForeground(DANGEROUS_WORLD);
 		}
@@ -266,10 +267,14 @@ class WorldTableRow extends JPanel
 		{
 			activityField.setForeground(TOURNAMENT_WORLD);
 		}
-		/*else if (types.contains(WorldType.PVP_ARENA))
+		else if (types.contains(WorldType.PVP_ARENA))
 		{
 			activityField.setForeground(PVP_ARENA_WORLD);
-		}*/
+		}
+		else if (types.contains(WorldType.QUEST_SPEEDRUNNING))
+		{
+			activityField.setForeground(QUEST_SPEEDRUNNING_WORLD);
+		}
 		else
 		{
 			activityField.setForeground(Color.WHITE);
