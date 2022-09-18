@@ -87,6 +87,7 @@ public final class ItemID
 	public static final int STRENGTH_POTION1 = 119;
 	public static final int ATTACK_POTION3 = 121;
 	public static final int ATTACK_POTION2 = 123;
+	public static final int EVENT_RPG = 12727;
 	public static final int ATTACK_POTION1 = 125;
 	public static final int RESTORE_POTION3 = 127;
 	public static final int RESTORE_POTION2 = 129;
