@@ -46,7 +46,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
-import net.runelite.api.MenuAction;
 import net.runelite.api.MenuEntry;
 import net.runelite.api.Player;
 import net.runelite.api.Skill;
@@ -66,7 +65,6 @@ import net.runelite.client.chat.QueuedMessage;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.events.OverlayMenuClicked;
 import net.runelite.client.events.PartyChanged;
 import net.runelite.client.events.PartyMemberAvatar;
 import net.runelite.client.input.KeyManager;
@@ -240,17 +238,6 @@ public class PartyPlugin extends Plugin
 		if (!focusChanged.isFocused())
 		{
 			hotkeyPressed = false;
-		}
-	}
-
-	@Subscribe
-	public void onOverlayMenuClicked(OverlayMenuClicked event)
-	{
-		if (event.getEntry().getMenuAction() == MenuAction.RUNELITE_OVERLAY &&
-			event.getEntry().getTarget().equals("Party") &&
-			event.getEntry().getOption().equals("Leave"))
-		{
-			leaveParty();
 		}
 	}
 
@@ -501,11 +488,16 @@ public class PartyPlugin extends Plugin
 			return;
 		}
 
+		if (client.getTickCount() % messageFreq(party.getMembers().size()) != 0)
+		{
+			return;
+		}
+
 		final int healthCurrent = client.getBoostedSkillLevel(Skill.HITPOINTS);
 		final int prayerCurrent = client.getBoostedSkillLevel(Skill.PRAYER);
 		final int healthMax = client.getRealSkillLevel(Skill.HITPOINTS);
 		final int prayerMax = client.getRealSkillLevel(Skill.PRAYER);
-		final int runEnergy = (int) Math.ceil(client.getEnergy() / 10.0) * 10; // flatten to reduce network load
+		final int runEnergy = (int) Math.ceil(client.getEnergy() / 1000.0) * 10; // flatten to reduce network load
 		final int specEnergy = client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT) / 10;
 		final boolean vengActive = client.getVarbitValue(Varbits.VENGEANCE_ACTIVE) == 1;
 
@@ -655,5 +647,11 @@ public class PartyPlugin extends Plugin
 			SwingUtilities.invokeLater(() -> panel.addMember(partyData));
 			return partyData;
 		});
+	}
+
+	private static int messageFreq(int partySize)
+	{
+		// introduce a tick delay for each member >6
+		return Math.max(1, partySize - 6);
 	}
 }
