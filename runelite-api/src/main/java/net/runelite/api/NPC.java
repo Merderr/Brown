@@ -67,4 +67,6 @@ public interface NPC extends Actor, Locatable {
 	 */
 	@Nullable
 	NPCComposition getTransformedComposition();
+
+
 }

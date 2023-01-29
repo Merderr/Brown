@@ -77,4 +77,11 @@ public interface Model extends Mesh, Renderable
 	byte getOverrideHue();
 	byte getOverrideSaturation();
 	byte getOverrideLuminance();
+
+	int getCenterX();
+	int getCenterY();
+	int getCenterZ();
+	int getExtremeX();
+	int getExtremeY();
+	int getExtremeZ();
 }

@@ -98,4 +98,6 @@ public interface NPCComposition extends ParamHolder
 	 * @return
 	 */
 	boolean isFollower();
+
+	HeadIcon getOverheadIcon();
 }
