@@ -81,4 +81,11 @@ public interface Model extends Mesh, Renderable
 	int[] getTexIndices1();
 	int[] getTexIndices2();
 	int[] getTexIndices3();
+
+	int getCenterX();
+	int getCenterY();
+	int getCenterZ();
+	int getExtremeX();
+	int getExtremeY();
+	int getExtremeZ();
 }
