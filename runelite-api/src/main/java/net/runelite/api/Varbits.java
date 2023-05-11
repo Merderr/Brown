@@ -585,6 +585,7 @@ public final class Varbits
 	/**
 	 * Spell cooldowns
 	 */
+	public static final int HEAL_GROUP_COOLDOWN = 925;
 	public static final int VENGEANCE_COOLDOWN = 2451;
 	public static final int DEATH_CHARGE_COOLDOWN = 12138;
 	public static final int CORRUPTION_COOLDOWN = 12288;
@@ -804,4 +805,12 @@ public final class Varbits
 	 * Set to 20 upon drinking an overload.
 	 */
 	public static final int COX_OVERLOAD_REFRESHES_REMAINING = 5418;
+
+	public static final int SLAYER_POINTS = 4068;
+	public static final int SLAYER_TASK_STREAK = 4069;
+
+	/**
+	 * The assigned boss for boss slayer.
+	 */
+	public static final int SLAYER_TASK_BOSS = 4723;
 }
